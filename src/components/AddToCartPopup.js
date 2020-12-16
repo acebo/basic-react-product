@@ -3,7 +3,7 @@ import { Modal, Radio, Typography, InputNumber } from 'antd'
 
 const { Title, Text } = Typography
 
-const AddToCartPopup = ({ addToCartPopupProduct, setAddToCartPopupProduct }) => {
+const AddToCartPopup = ({ addToCartPopupProduct, setAddToCartPopupProduct, setCartItems, cartItems }) => {
   const [selectedSize, setSelectedSize] = useState(addToCartPopupProduct.sizes[0])
   const [selectedColor, setSelectedColor] = useState(addToCartPopupProduct.colors[0])
   const [quantity, setQuantity] = useState(1)
@@ -14,8 +14,19 @@ const AddToCartPopup = ({ addToCartPopupProduct, setAddToCartPopupProduct }) => 
     setQuantity(value)
   }
 
+  const onOk = () => {
+    const cartItem = {
+      id: addToCartPopupProduct.id,
+      name: addToCartPopupProduct.name,
+      description: addToCartPopupProduct.description,
+      size: selectedSize,
+      color: selectedColor,
+      quantity
+    }
 
-  const onOk = () => {}
+    setCartItems([ ...cartItems, cartItem ])
+    setAddToCartPopupProduct(undefined)
+  }
   const onCancel = () => {
     setAddToCartPopupProduct(undefined)
   }

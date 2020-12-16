@@ -19,6 +19,23 @@
   margin: 0 auto;
   padding: 10px;
   width: calc(340px * 3);
+  position: relative;
+}
+
+.app-header .cart-quantity {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #61dafb;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: -1px;
+  line-height: 20px;
+  cursor: pointer;
 }
 
 .app-content {

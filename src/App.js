@@ -3,12 +3,14 @@ import './App.css';
 import data from './data.json'
 import 'antd/dist/antd.css';
 import { Radio } from 'antd'
+import { ShoppingCartOutlined } from '@ant-design/icons'
 import ProductCard from './components/ProductCard'
 import AddToCartPopup from './components/AddToCartPopup'
 
 function App() {
   const [selectedFilter, setSelectedFilter] = useState('Select all')
   const [addToCartPopupProduct, setAddToCartPopupProduct] = useState(undefined)
+  const [cartItems, setCartItems] = useState([])
 
   const onFilterChange = (event) => setSelectedFilter(event.target.value)
 
@@ -29,6 +31,8 @@ function App() {
             optionType="button"
             buttonStyle="solid"
           />
+          <ShoppingCartOutlined style={{ fontSize: '32px', position: 'absolute', right: 10, top: 10 }} />
+          <div className={'cart-quantity'}>{cartItems.reduce((acc, cur) => acc += cur.quantity, 0)}</div>
         </div>
       </div>
       <div className={'app-content'}>
@@ -45,6 +49,8 @@ function App() {
           <AddToCartPopup
             addToCartPopupProduct={addToCartPopupProduct}
             setAddToCartPopupProduct={setAddToCartPopupProduct}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
           />
       }
     </div>
