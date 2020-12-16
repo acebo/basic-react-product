@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Radio } from 'antd'
+import { Radio, Typography } from 'antd'
 import { ShoppingCartOutlined } from '@ant-design/icons'
 import ProductCard from '../components/ProductCard'
 import AddToCartPopup from '../components/AddToCartPopup'
+
+const { Title } = Typography
 
 const Product = ({ cartItems, setCartItems }) => {
   let [products, setProducts] = useState([])
@@ -29,6 +31,13 @@ const Product = ({ cartItems, setCartItems }) => {
     <>
       <div className={'app-header'}>
         <div className={'header-content'}>
+          <Title>Pastel Store</Title>
+          <div className="cart-icon">
+            <Link to="/cart">
+              <ShoppingCartOutlined style={{ fontSize: '32px', position: 'absolute', right: 10, top: 10 }} />
+              <div className={'cart-quantity'}>{cartItems.reduce((acc, cur) => acc += cur.quantity, 0)}</div>
+            </Link>
+          </div>
           <Radio.Group
             options={['Select all', 'Only in stock']}
             onChange={onFilterChange}
@@ -36,10 +45,6 @@ const Product = ({ cartItems, setCartItems }) => {
             optionType="button"
             buttonStyle="solid"
           />
-          <Link to="/cart">
-            <ShoppingCartOutlined style={{ fontSize: '32px', position: 'absolute', right: 10, top: 10 }} />
-            <div className={'cart-quantity'}>{cartItems.reduce((acc, cur) => acc += cur.quantity, 0)}</div>
-          </Link>
         </div>
       </div>
       <div className={'app-content'}>

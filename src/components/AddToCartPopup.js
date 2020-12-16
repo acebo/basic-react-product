@@ -17,6 +17,7 @@ const AddToCartPopup = ({ addToCartPopupProduct, setAddToCartPopupProduct, setCa
       id: addToCartPopupProduct.id,
       name: addToCartPopupProduct.name,
       description: addToCartPopupProduct.description,
+      price: addToCartPopupProduct.price,
       size: selectedSize,
       color: selectedColor,
       quantity
@@ -34,8 +35,9 @@ const AddToCartPopup = ({ addToCartPopupProduct, setAddToCartPopupProduct, setCa
       title={`Add ${addToCartPopupProduct.name} to cart!`}
       onOk={onOk}
       onCancel={onCancel}
+      className={'add-to-cart-options'}
     >
-      <strong level={5}>Size</strong>
+      <strong level={5}>SIZE</strong>
       <div className="field">
         <Radio.Group
           options={addToCartPopupProduct.sizes}
@@ -45,7 +47,7 @@ const AddToCartPopup = ({ addToCartPopupProduct, setAddToCartPopupProduct, setCa
           buttonStyle="solid"
         />
       </div>
-      <strong>Color</strong>
+      <strong>COLOR</strong>
       <div className="field colors-container">
         <div className="colors">
           {
@@ -55,7 +57,7 @@ const AddToCartPopup = ({ addToCartPopupProduct, setAddToCartPopupProduct, setCa
           }
         </div>
       </div>
-      <strong level={5}>Quantity</strong>
+      <strong level={5}>QUANTITY</strong>
       <div className="field">
         <InputNumber min={1} max={addToCartPopupProduct.stock} defaultValue={quantity} onChange={onQuantityChange} />
       </div>

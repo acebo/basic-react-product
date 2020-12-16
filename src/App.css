@@ -8,7 +8,7 @@
 
 .app-header {
   position: fixed;
-  height: 80px;
+  height: 130px;
   width: 100%;
   z-index: 1;
   top: 0;
@@ -17,13 +17,19 @@
 
 .app-header .header-content {
   margin: 0 auto;
-  padding: 10px;
+  padding: 20px 10px 10px;
   width: calc(340px * 3);
   position: relative;
 }
 
-.app-header .cart-quantity {
+.app-header .cart-icon {
   position: absolute;
+  top: 30px;
+  right: 5px;
+}
+
+.app-header .cart-quantity {
+  position: relative;
   top: 5px;
   right: 5px;
   background-color: #61dafb;
@@ -39,7 +45,7 @@
 }
 
 .app-content {
-  margin: 100px auto;
+  margin: 130px auto;
   width: calc(340px * 3);
 }
 
@@ -209,7 +215,7 @@ body {
 .product-options{
   padding:2px 0 0;
 }
-.product-options strong{
+.product-options strong, .add-to-cart-options strong{
   font-weight:700;
   color:#393c45;
   font-size:14px;
@@ -306,4 +312,9 @@ div.shadow{
   min-height: 30px;
   margin-top: 5px;
   margin-bottom: 10px;
+}
+.cart-header {
+  align-items: center;
+  display: flex;
+  height: 100%;
 }
