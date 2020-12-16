@@ -5,6 +5,7 @@ import { Radio, Typography } from 'antd'
 import { ShoppingCartOutlined } from '@ant-design/icons'
 import ProductCard from '../components/ProductCard'
 import AddToCartPopup from '../components/AddToCartPopup'
+import Header from '../components/Header'
 
 const { Title } = Typography
 
@@ -29,24 +30,22 @@ const Product = ({ cartItems, setCartItems }) => {
 
   return (
     <>
-      <div className={'app-header'}>
-        <div className={'header-content'}>
-          <Title>Pastel Store</Title>
-          <div className="cart-icon">
-            <Link to="/cart">
-              <ShoppingCartOutlined style={{ fontSize: '32px', position: 'absolute', right: 10, top: 10 }} />
-              <div className={'cart-quantity'}>{cartItems.reduce((acc, cur) => acc += cur.quantity, 0)}</div>
-            </Link>
-          </div>
-          <Radio.Group
-            options={['Select all', 'Only in stock']}
-            onChange={onFilterChange}
-            value={selectedFilter}
-            optionType="button"
-            buttonStyle="solid"
-          />
+      <Header>
+        <Title>Pastel Store</Title>
+        <div className="cart-icon">
+          <Link to="/cart">
+            <ShoppingCartOutlined style={{ fontSize: '32px', position: 'absolute', right: 10, top: 10 }} />
+            <div className={'cart-quantity'}>{cartItems.reduce((acc, cur) => acc += cur.quantity, 0)}</div>
+          </Link>
         </div>
-      </div>
+        <Radio.Group
+          options={['Select all', 'Only in stock']}
+          onChange={onFilterChange}
+          value={selectedFilter}
+          optionType="button"
+          buttonStyle="solid"
+        />
+      </Header>
       <div className={'app-content'}>
         <div id={'content'}>
           {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Typography, Space, Table } from 'antd'
 import { ShoppingCartOutlined } from '@ant-design/icons'
+import Header from '../components/Header'
 
 const { Title, Text } = Typography
 
@@ -41,7 +42,7 @@ const Cart = ({ cartItems, setCartItems }) => {
       key: 'price',
       render: (text, record) => (
         <Space size="middle" onClick={() => onDelete(record)}>
-          {record.price} ฿
+          ${record.price}
         </Space>
       ),
     },
@@ -58,14 +59,12 @@ const Cart = ({ cartItems, setCartItems }) => {
 
   return (
     <>
-      <div className={'app-header'}>
-        <div className={'header-content cart-header'}>
-          <Title>
-            <ShoppingCartOutlined style={{ fontSize: '36px', marginRight: 10 }} />
-            Cart
-          </Title>
-        </div>
-      </div>
+      <Header className={'cart-header'}>
+        <Title>
+          <ShoppingCartOutlined style={{ fontSize: '36px', marginRight: 10 }} />
+          Cart
+        </Title>
+      </Header>
       <div className={'app-content'}>
         <Table
           columns={columns}
