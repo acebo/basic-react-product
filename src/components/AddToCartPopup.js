@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { Modal, Radio, Typography, InputNumber } from 'antd'
-
-const { Title, Text } = Typography
+import { Modal, Radio, InputNumber } from 'antd'
 
 const AddToCartPopup = ({ addToCartPopupProduct, setAddToCartPopupProduct, setCartItems, cartItems }) => {
   const [selectedSize, setSelectedSize] = useState(addToCartPopupProduct.sizes[0])
@@ -9,7 +7,7 @@ const AddToCartPopup = ({ addToCartPopupProduct, setAddToCartPopupProduct, setCa
   const [quantity, setQuantity] = useState(1)
 
   const onSizeSelectionChange = (event) => setSelectedSize(event.target.value)
-  const onColorSelectionChange = (event) => setSelectedColor(event.target.value)
+  const onColorSelectionChange = (value) => setSelectedColor(value)
   const onQuantityChange = (value) => {
     setQuantity(value)
   }
@@ -37,25 +35,30 @@ const AddToCartPopup = ({ addToCartPopupProduct, setAddToCartPopupProduct, setCa
       onOk={onOk}
       onCancel={onCancel}
     >
-      <Text>{addToCartPopupProduct.description}</Text>
-      <Title level={5}>Size</Title>
-      <Radio.Group
-        options={addToCartPopupProduct.sizes}
-        onChange={onSizeSelectionChange}
-        value={selectedSize}
-        optionType="button"
-        buttonStyle="solid"
-      />
-      <Title level={5}>Color</Title>
-      <Radio.Group
-        options={addToCartPopupProduct.colors}
-        onChange={onColorSelectionChange}
-        value={selectedColor}
-        optionType="button"
-        buttonStyle="solid"
-      />
-      <Title level={5}>Quantity</Title>
-      <InputNumber min={1} max={addToCartPopupProduct.stock} defaultValue={quantity} onChange={onQuantityChange} />
+      <strong level={5}>Size</strong>
+      <div className="field">
+        <Radio.Group
+          options={addToCartPopupProduct.sizes}
+          onChange={onSizeSelectionChange}
+          value={selectedSize}
+          optionType="button"
+          buttonStyle="solid"
+        />
+      </div>
+      <strong>Color</strong>
+      <div className="field colors-container">
+        <div className="colors">
+          {
+            addToCartPopupProduct.colors.map(i => (
+              <div key={i} className={`c-${i} ${selectedColor === i ? 'selected' : ''}`} onClick={() => onColorSelectionChange(i)}><span /></div>
+            ))
+          }
+        </div>
+      </div>
+      <strong level={5}>Quantity</strong>
+      <div className="field">
+        <InputNumber min={1} max={addToCartPopupProduct.stock} defaultValue={quantity} onChange={onQuantityChange} />
+      </div>
     </Modal>
   )
 }
