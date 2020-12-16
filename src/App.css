@@ -257,6 +257,11 @@ div.colors div span:hover{
   height:17px;
   margin:-1px 0 0 -1px;
 }
+div.colors div.selected span {
+  width: 19px;
+  height: 19px;
+  margin: -2px 0 0 -2px;
+}
 div.c-blue span{background:#b3adc6;}
 div.c-red span{background:#f89bab;}
 div.c-green span{background:#78c8b8;}
@@ -278,4 +283,10 @@ div.shadow{
   background: -o-linear-gradient(right,rgba(0,0,0,0.1),rgba(0,0,0,0.2));
   background: -moz-linear-gradient(right,rgba(0,0,0,0.1),rgba(0,0,0,0.2));
   background: linear-gradient(to right, rgba(0,0,0,0.1), rgba(0,0,0,0.2));
+}
+.field {
+  width: 100%;
+  min-height: 30px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }

@@ -4,9 +4,11 @@ import data from './data.json'
 import 'antd/dist/antd.css';
 import { Radio } from 'antd'
 import ProductCard from './components/ProductCard'
+import AddToCartPopup from './components/AddToCartPopup'
 
 function App() {
   const [selectedFilter, setSelectedFilter] = useState('Select all')
+  const [addToCartPopupProduct, setAddToCartPopupProduct] = useState(undefined)
 
   const onFilterChange = (event) => setSelectedFilter(event.target.value)
 
@@ -33,12 +35,18 @@ function App() {
         <div id={'content'}>
           {
             products.map(item => (
-              <ProductCard key={item.id} item={item} />
+              <ProductCard key={item.id} item={item} setAddToCartPopupProduct={setAddToCartPopupProduct} />
             ))
           }
         </div>
       </div>
-
+      {
+        !!addToCartPopupProduct &&
+          <AddToCartPopup
+            addToCartPopupProduct={addToCartPopupProduct}
+            setAddToCartPopupProduct={setAddToCartPopupProduct}
+          />
+      }
     </div>
   );
 }

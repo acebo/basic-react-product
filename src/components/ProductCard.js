@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import img from '../assets/shoe.png';
 
-const ProductCard = ({ item }) => {
+const ProductCard = ({ item, setAddToCartPopupProduct }) => {
   const card = useRef(null)
 
   const hello = () => {
@@ -12,11 +12,15 @@ const ProductCard = ({ item }) => {
     card.current.classList.remove('animate')
   }
 
+  const onClick = () => {
+    setAddToCartPopupProduct(item)
+  }
+
   return (
     <div className={'product-container'}>
       <div className={`product-card ${item.stock === 0 ? 'product-out-of-stock' : ''}`} ref={card} onMouseOver={hello} onMouseLeave={helloOut}>
         <img src={img} alt=""/>
-        <div className="add-to-cart-button">Add to Cart</div>
+        <div className="add-to-cart-button" onClick={onClick}>Add to Cart</div>
         <div className="stats">
           <div className="stats-container">
             <span className="product_price">${ item.price }</span>
