@@ -1,18 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
-import data from '../data.json'
 import { Radio } from 'antd'
 import { ShoppingCartOutlined } from '@ant-design/icons'
 import ProductCard from '../components/ProductCard'
 import AddToCartPopup from '../components/AddToCartPopup'
 
 const Product = ({ cartItems, setCartItems }) => {
+  let [products, setProducts] = useState([])
   const [selectedFilter, setSelectedFilter] = useState('Select all')
   const [addToCartPopupProduct, setAddToCartPopupProduct] = useState(undefined)
 
   const onFilterChange = (event) => setSelectedFilter(event.target.value)
 
-  let products = data
+  useEffect(
+    () => {
+      axios.get('http://localhost:3001/products')
+        .then(({ data }) => setProducts(data))
+    },
+    []
+  )
 
   if (selectedFilter === 'Only in stock') {
     products = products.filter(product => product.stock !== 0)
