@@ -18,8 +18,8 @@ const Product = ({ cartItems, setCartItems }) => {
 
   useEffect(
     () => {
-      axios.get('http://localhost:3001/products')
-        .then(({ data }) => setProducts(data))
+      axios.get('https://basic-react-8c559.web.app/static/data.json')
+        .then(({ data }) => setProducts(data.products))
     },
     []
   )
@@ -47,7 +47,7 @@ const Product = ({ cartItems, setCartItems }) => {
         />
       </Header>
       <div className={'app-content'}>
-        <div id={'content'}>
+        <div className={'product-list'}>
           {
             products.map(item => (
               <ProductCard key={item.id} item={item} setAddToCartPopupProduct={setAddToCartPopupProduct} />

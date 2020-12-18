@@ -84,11 +84,10 @@
 /* Generals resets and unimportant stuff */
 * { margin: 0px; padding: 0px; }
 body {
-  background: #eaebec;
   font-family: "Open Sans", sans-serif;
 }
 
-#content {
+.product-list {
   display: inline-grid;
   grid-template-columns: 340px 340px 340px;
   grid-template-rows: auto;
